@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "k": "int"
+  },
+  "left": [
+    {
+      "rid": "l1",
+      "k": 1
+    },
+    {
+      "rid": "l2",
+      "k": null
+    }
+  ],
+  "right": [
+    {
+      "rid": "r1",
+      "k": 1
+    },
+    {
+      "rid": "r2",
+      "k": null
+    }
+  ],
+  "query": {
+    "keys": [
+      [
+        "k",
+        "k"
+      ]
+    ],
+    "mode": "left",
+    "null_safe": false
+  }
+}
