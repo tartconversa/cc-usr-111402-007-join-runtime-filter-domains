@@ -1,0 +1,38 @@
+{
+  "format": "rtf/v1",
+  "verify": true,
+  "schema": {
+    "region": "str",
+    "version": "str",
+    "value": "float",
+    "label": "str"
+  },
+  "left": [
+    {"rid": "e1", "region": "华东", "version": "v2025", "value": 12.5},
+    {"rid": "e5", "region": "华东", "version": "v2025", "value": 11.0},
+    {"rid": "e2", "region": "华北", "version": "v2025", "value": 7.0},
+    {"rid": "e7", "region": "华北", "version": "v2024", "value": 6.0},
+    {"rid": "e3", "region": "华东", "version": "v2024", "value": 9.25},
+    {"rid": "e6", "region": "华西", "version": "v2023", "value": 3.75},
+    {"rid": "e4", "region": "华南", "version": "v2025", "value": 4.5},
+    {"rid": "e8", "region": "华东", "version": "v2025", "value": 8.5}
+  ],
+  "right": [
+    {"rid": "d1", "region": "华东", "version": "v2025", "label": "重点"},
+    {"rid": "d2", "region": "华北", "version": "v2025", "label": "一般"},
+    {"rid": "d3", "region": "华东", "version": "v2024", "label": "历史"},
+    {"rid": "d4", "region": "华南", "version": "v2025", "label": "重点"}
+  ],
+  "query": {
+    "keys": [["region", "region"], ["version", "version"]],
+    "mode": "inner",
+    "null_safe": false,
+    "build_where": {"op": "eq", "field": "label", "value": "重点"}
+  },
+  "scan": {"page_size": 2},
+  "build": {
+    "snapshot": "dim-region-version@2026-11",
+    "fragments": 2,
+    "filter": {"kind": "auto", "memory_bytes": 4096}
+  }
+}

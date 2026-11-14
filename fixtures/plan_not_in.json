@@ -1,0 +1,31 @@
+{
+  "format": "rtf/v1",
+  "verify": true,
+  "schema": {
+    "version": "str",
+    "label": "str"
+  },
+  "left": [
+    {"rid": "n1", "version": "v2025"},
+    {"rid": "n2", "version": "v2024"},
+    {"rid": "n3", "version": null},
+    {"rid": "n4", "version": "v2023"}
+  ],
+  "right": [
+    {"rid": "d1", "version": "v2025", "label": "重点"},
+    {"rid": "d2", "version": null, "label": "重点"},
+    {"rid": "d3", "version": "v2024", "label": "一般"}
+  ],
+  "query": {
+    "keys": [["version", "version"]],
+    "mode": "not_in",
+    "null_safe": false,
+    "build_where": {"op": "eq", "field": "label", "value": "重点"}
+  },
+  "scan": {"page_size": 2},
+  "build": {
+    "snapshot": "dim-version@2026-11",
+    "fragments": 1,
+    "filter": {"kind": "auto", "memory_bytes": 4096}
+  }
+}

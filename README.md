@@ -4,9 +4,16 @@
 app/storage.py校验输入并产生确定内容摘要；app/semantics.py提供受限三值谓词；app/service.py绑定资料身份并运行现有代码。
 fixtures/sample.json全部为合成资料，不对应真实机构的排放记录。Python 3.14，当前模块仅依赖标准库。
 
+动态运行时过滤（rtf/v1）：app/paged.py按页扫描并在完整键域上提前排掉不可能匹配的页，
+app/rtfilter.py维护精确/预算Bloom过滤器、片段域生命周期与缓存，设计见[运行时过滤](docs/runtime-filter.md)。
+
 运行已有入口：
 
     python -m app.service fixtures/sample.json
+
+运行运行时过滤入口：
+
+    python -m app.paged fixtures/plan_inner.json
 
 执行现有行为检查：
 

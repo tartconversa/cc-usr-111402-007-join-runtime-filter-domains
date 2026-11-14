@@ -1,0 +1,30 @@
+{
+  "format": "rtf/v1",
+  "verify": true,
+  "schema": {
+    "region": "str",
+    "label": "str"
+  },
+  "left": [
+    {"rid": "l1", "region": "华东"},
+    {"rid": "l2", "region": "华北"},
+    {"rid": "l3", "region": "华西"},
+    {"rid": "l4", "region": null}
+  ],
+  "right": [
+    {"rid": "d1", "region": "华东", "label": "重点"},
+    {"rid": "d2", "region": "华北", "label": "一般"}
+  ],
+  "query": {
+    "keys": [["region", "region"]],
+    "mode": "left",
+    "null_safe": false,
+    "build_where": {"op": "eq", "field": "label", "value": "重点"}
+  },
+  "scan": {"page_size": 2},
+  "build": {
+    "snapshot": "dim-region@2026-11",
+    "fragments": 1,
+    "filter": {"kind": "auto", "memory_bytes": 4096}
+  }
+}

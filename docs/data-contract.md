@@ -21,3 +21,13 @@ where只接受结果严格为true的行。expression为null表示不限制。
 
 app.service.inspect → storage.freeze/digest → baseline.execute。sample.json描述的是现有可执行输入，服务输出附资料摘要。
 新增能力可以增加入口和计划结构，保留现有调用及输出语义；扩展格式应单独声明版本。
+
+## 运行时过滤计划（rtf/v1）
+
+app.service.inspect_filtered → storage.freeze/digest → paged.execute_plan。
+输入须声明format为rtf/v1，在left/right/query之上扩展query.build_where、query.build_side、
+scan分页与build片段/封存/过滤器预算，字段含义见[运行时过滤](docs/runtime-filter.md)。
+输出在result之外附decisions（每次启用或拒用的依据）、metrics（节省的页和行）、domain
+（完整域身份）与cache；verify为true时附与不启用过滤的完整多重集对照。
+过滤器只由完整域发布：片段失败或完成通知缺席时退化为不过滤，查询答案不变。
+缓存键绑定构建快照、扫描快照、条件与完整域身份，新事实或新维度版本不会沿用旧过滤器。
